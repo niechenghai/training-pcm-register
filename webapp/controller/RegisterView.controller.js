@@ -6,7 +6,7 @@ sap.ui.define([
 	/**
 	 * @param {typeof sap.ui.core.mvc.Controller} Controller
 	 */
-	function (Controller) {
+	function (Controller, jQuery, MessageToast) {
 		"use strict";
 
 		return Controller.extend("com.training.pcmregister.controller.RegisterView", {
@@ -29,7 +29,7 @@ sap.ui.define([
                 this.initRegistrationDataModel();
                 this.initResourceBundle();
             },
-            
+
 
             initResourceBundle: function() {
                 var oI18nAppModel = this.getOwnerComponent().getModel("i18n").getResourceBundle();
@@ -77,7 +77,7 @@ sap.ui.define([
                 });
                 return isValid;
             },
-            
+
             register: function(oEvent) {
 
                 if (!this.isValidate()) {
@@ -92,7 +92,7 @@ sap.ui.define([
                 var mail = registrationData.postData.mail;
 
                 var inviteUrl = "/ias/cps/invite/";
-                
+
                 var siteUrl = "https://69c77e7atrial.cpp.cfapps.eu10.hana.ondemand.com/site?siteId=b68895ea-a4d1-4585-9b32-b5ba4e7c31f5";
 
                 var data = {
@@ -111,7 +111,7 @@ sap.ui.define([
                     contentType: "application/json;charset=utf-8",
                     dataType: "text",
                     success: function(data, res) {
-                        
+
                         var message = this.oBundle.getText("SUCCESS_MESSAGE") || "Success!";
                         MessageToast.show(message, {duration: 2000});
                     }.bind(this),
